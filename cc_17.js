@@ -86,3 +86,38 @@ salesRep.clients.forEach(client => {
 
 console.log(`Total spent by John Doe: $${salesRep.getClientTotal("John Doe")}`);
 console.log(`Total spent by Tobi Brown: $${salesRep.getClientTotal("Tobi Brown")}`);
+
+
+
+// ----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+// Task 3 - Create a VIPCustomer Class (extends Customer)
+
+// Creating a VIP-class for certain customers so they are able to get specific bonuses/discounts
+
+// The class, VIPCustomer, would get some attributes from the regular Customer class and add a viplevel to it
+
+class VIPCustomer extends Customer {
+    constructor(name, email, viplevel) {
+        super(name, email);
+        this.viplevel = viplevel;
+    }
+
+    gettotalspent() {
+        const totalspent = super.gettotalspent();
+        return totalspent * 1.1;
+    }
+}
+
+// Creating an example case with a VIP Customer and give them a VIP Status, then console-logging the results.
+
+const vipcustomer = new VIPCustomer("Amanda Willow", "amandawillow@gmail.com", "Gold");
+
+vipcustomer.addPurchase(200);
+vipcustomer.addPurchase(50);
+
+console.log(`VIP Customer: ${vipcustomer.name}`);
+console.log(`VIP Level: ${vipcustomer.viplevel}`);
+console.log(`Total amount spent with bonus: $${vipcustomer.gettotalspent().toFixed(2)}`);
