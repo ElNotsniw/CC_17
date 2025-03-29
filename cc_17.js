@@ -31,3 +31,58 @@ customer1.addPurchase(100);
 // Console-logging the results.
 
 console.log(`Total Spent by ${customer1.name}: $${customer1.gettotalspent()}`);
+
+
+
+
+// ----------------------------------------------------------------------------------------------------------------------------------
+
+
+// Task 2 - Create a SalesRep Class
+
+// Creating a SalesRep class to have their names and the clients they worked with
+
+class SalesRep {
+    constructor(name) {
+        this.name = name;
+        this.clients = [];
+    }
+
+    addClient(customer) {
+        this.clients.push(customer);
+    }
+
+    getClientTotal(name) {
+        const client = this.clients.find(client => client.name === name);
+
+        if (client) {
+            return client.gettotalspent();
+        } else {
+            return `Client with name ${name} not found.`;
+        }
+    }
+}
+
+// Creating a new customer and give them transactions.
+
+const customer2 = new Customer("Tobi Brown", "tobibrown@gmail.com");
+customer2.addPurchase(30)
+customer2.addPurchase(50);
+
+// Creating a sales rep using the SalesRep Class and give them clients they worked with.
+
+const salesRep = new SalesRep("Josh Parks");
+
+salesRep.addClient(customer1);
+salesRep.addClient(customer2);
+
+// Console-logging the sales rep and the customers/clients and how much they spent.
+
+console.log(`Sales Rep: ${SalesRep.name}`);
+console.log("Clients:");
+salesRep.clients.forEach(client => {
+    console.log(`${client.name} (${client.email})`);
+});
+
+console.log(`Total spent by John Doe: $${salesRep.getClientTotal("John Doe")}`);
+console.log(`Total spent by Tobi Brown: $${salesRep.getClientTotal("Tobi Brown")}`);
